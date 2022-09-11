@@ -26,27 +26,44 @@ const updatePage = async () => {
 
   // Make API request and get an array of fruit objects
   const fruitsArray = await apiRequest();
-  // console.log(fruitsArray);
+  console.log(fruitsArray);
 
   // TODO: Use either `map` and/or `filter` to extract some data from the array of fruit objects
   // For example, find "name of all fruits whose sugar > 15",
 
+  const filteredArray = fruitsArray.filter((item) => {
+    return item.nutritions.sugar > 15;
+  })
+
+  const nameArray = filteredArray.map((item) => {
+    return " " + item.name;
+  })
+
+  console.log(nameArray);
+
   // TODO: Create a new HTML element to display your data
+  const newElement = document.createElement('div')
+  newElement.innerHTML = nameArray;
+
+  const title = document.createElement('div')
+  title.innerHTML = "Fruits whose sugar is > 15: ";
 
   // TODO: Append your new element to the page
+  gallery.append(title);
+  gallery.append(newElement);
 
 }
 
 // SAMPLE CODE of how to create and append a new HTML element to the page
-const exampleAddElement = () => {
-  // Create a new HTML element and set its properties
-  const newElement = document.createElement('div');
-  newElement.innerHTML = "this text is inside a div";
+// const exampleAddElement = () => {
+//   // Create a new HTML element and set its properties
+//   const newElement = document.createElement('div');
+//   newElement.innerHTML = "this text is inside a div";
 
-  // Append the new element to an existing part of the webpage
-  const existingElement = document.getElementById('example-id');
-  existingElement.append(newElement);
-}
+//   // Append the new element to an existing part of the webpage
+//   const existingElement = document.getElementById('example-id');
+//   existingElement.append(newElement);
+// }
 
 /**
  * To access information in this API, we need to send our requests through a proxy due to CORS restrictions.
